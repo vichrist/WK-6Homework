@@ -21,3 +21,10 @@ body {
     height: 25px;
     width: 300px;
 }
+
+.city-container {
+    height: 700px;
+    width: 300px;
+    border-style: dashed 1px;
+    background-color: gray;
+}
