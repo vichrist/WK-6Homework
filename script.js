@@ -1,33 +1,18 @@
 //Create variable that holds emtpy array 
 let history = []; 
 
+let userInput = document.getElementById('city').value; 
+
 //functionality of code 
 let addCity = (ev) => {
   ev.preventDefault(); //prevents the form from submitting 
-  let userInput = document.getElementById('city').value; //variable set to user input value 
+  userInput = document.getElementById('city').value; //variable set to user input value 
   history.push(userInput); //pushes user input value into empty array 
   document.querySelector('form').reset(); //resets the form "clears" for next input value
 
   console.log('added', history ); 
   let searchHistory = document.querySelector('.city-container'); //variable that is set to querySelect the city-container which pulls in on line 25 the text content 
   searchHistory.textContent = (history); 
-
-
-
-//Create variables that are assigned to render in API data 
-  var h3 = $('<h3>').addClass('temp-title').text(userInput);
-  console.log(h3);
-
-  var temp = $('<p>').addClass('API-container').text(main.temp); 
-  console.log(temp);
-
-  var humidity = $('<p>').addClass('API-container').text(main.humidity); 
-  console.log(humidity);
-
-  var wind = $('<p>').addClass('API-container').text(wind.speed); 
-  console.log(wind);
-
-
 
 
 //Locally storing history of user input values 
@@ -47,9 +32,12 @@ $('#btn1').on('click', function () {
         console.log(userAPI);
     });
 
-//Function to execute once the API is called 
+//Function to execute the API call 
 function searchWeatherTrips(userAPI) {
+  $('.API-container').empty(); 
     var queryURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + userAPI + '&appid=ce3b9593e61b336933f1777b5554991c';
+
+
 $.ajax ({
     url: queryURL,
     method: "GET"
@@ -59,11 +47,38 @@ $.ajax ({
     console.log('Temperature: ', response.main.temp);
     console.log('Humidity:', response.main.humidity); 
     console.log('Wind Speed: ', response.wind.speed);
+
+//Create variables that are assigned to specific API data being called 
+
+    var h3 = $('<h3>').addClass('API-container').text(userInput);
+    console.log(h3);
+
+    var temp = $('<p>').addClass('API-container').text("Temperature: " + response.main.temp); 
+    console.log(temp);
+
+    var humidity = $('<p>').addClass('API-container').text("Humidity: " + response.main.humidity); 
+    console.log(humidity);
+
+    var wind = $('<p>').addClass('API-container').text("Wind Speed: " + response.wind.speed); 
+    console.log(wind);  
+
+    var uvIndex = $('<p>').addClass('API-container').text("UV Index: "); 
+    console.log(uvIndex);  
+
+
+
+//Append everything
+
+    $('.API-container').append(h3, temp, humidity, wind, uvIndex);
+
+    $('.API-container').slideDown('slow');
+
     $("#city").text(JSON.stringify(response)); 
   }).catch(function(error){
     console.log(error)
   })
 };
+
 
 
 
