@@ -1,4 +1,4 @@
-//Created variable that holds an emtpy array 
+//Create variable that holds emtpy array 
 let history = []; 
 
 //functionality of code 
@@ -14,28 +14,18 @@ let addCity = (ev) => {
 
 
 
-
-
-
-
-
-//Create variables to render API data on webpage
+//Create variables that are assigned to render in API data 
   var h3 = $('<h3>').addClass('temp-title').text(userInput);
   console.log(h3);
 
-  var temp = $('<p>').addClass('API-container').text(searchWeatherTrips.main.temp); 
+  var temp = $('<p>').addClass('API-container').text(main.temp); 
   console.log(temp);
 
-  var humidity = $('<p>').addClass('API-container').text(searchWeatherTrips.main.humidity); 
+  var humidity = $('<p>').addClass('API-container').text(main.humidity); 
   console.log(humidity);
 
-  var wind = $('<p>').addClass('API-container').text(searchWeatherTrips.wind.speed); 
+  var wind = $('<p>').addClass('API-container').text(wind.speed); 
   console.log(wind);
-
-
-
-
-
 
 
 
@@ -49,7 +39,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     document.getElementById('btn1').addEventListener('click', addCity);
 });
 
-//button click event to execute the API call 
+//button click event to execute API call 
 
 $('#btn1').on('click', function () {
         var userAPI = $("#city").val();      
