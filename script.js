@@ -12,6 +12,34 @@ let addCity = (ev) => {
   let searchHistory = document.querySelector('.city-container'); //variable that is set to querySelect the city-container which pulls in on line 25 the text content 
   searchHistory.textContent = (history); 
 
+
+
+
+
+
+
+
+//Create variables to render API data on webpage
+  var h3 = $('<h3>').addClass('temp-title').text(userInput);
+  console.log(h3);
+
+  var temp = $('<p>').addClass('API-container').text(searchWeatherTrips.main.temp); 
+  console.log(temp);
+
+  var humidity = $('<p>').addClass('API-container').text(searchWeatherTrips.main.humidity); 
+  console.log(humidity);
+
+  var wind = $('<p>').addClass('API-container').text(searchWeatherTrips.wind.speed); 
+  console.log(wind);
+
+
+
+
+
+
+
+
+
 //Locally storing history of user input values 
   localStorage.setItem('userSearchList', JSON.stringify(history) );
   }
@@ -37,15 +65,24 @@ $.ajax ({
     method: "GET"
   }).then(function(response) {
     console.log(response);
+    console.log('City Name:', response.name);
+    console.log('Temperature: ', response.main.temp);
+    console.log('Humidity:', response.main.humidity); 
+    console.log('Wind Speed: ', response.wind.speed);
     $("#city").text(JSON.stringify(response)); 
-  });
+  }).catch(function(error){
+    console.log(error)
+  })
 };
 
 
-// for() {
-//     var li =$("<li>").addClass("list-group-item").text(history[i]);
-//     $(".cities").append(li);
-// };
+
+
+
+
+
+
+
 
 
 
