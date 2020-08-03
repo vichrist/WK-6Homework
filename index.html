@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 
@@ -20,12 +21,17 @@
 
     <!--section 1 containing form data-->
     <section id="city-form">
-            <form>
+            <form>                
                 <div class="form-container"> 
                     <label for="cityname">Search</label><br>
                     <input type="text" id="city" placeholder="City Name"><br> 
-                    <button type="submit">Submit</button> 
                 </div>
+                <div class="form-container">
+                    <button type="text" id="btn1">Submit</button> 
+                </div>
+                <!-- <div id="msg">
+                    <pre></pre>
+                </div> -->
             </form>    
     </section>
 
@@ -34,11 +40,37 @@
         <div class="city-container">
             <div class="row">
                 <div class="col-sm-12"></div>
-                    <ul class="cities"></ul>
+                    <ul class="cities">
+                        <li></li>
+                    </ul>         
             </div>
         </div>
     </section>
-    
+
+    <!--section 3 containing API data -->
+    <section id="API-data">
+        <div class="API-container">
+            <div class="row">
+                <div class="col-sm-12">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--footer-->
+
+    <footer>
+        <div class="footer-container">
+            <div class="row">
+                <div class="col-sm-12"></div>
+                    <p>Author: Christal Vigil<br>
+                    <a href="mailto:c.vigil27@gmail.com">c.vigil27@gmail.com</a></p>
+            </div>
+        </div>       
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript"></script>
+    <script src="script.js"></script>
 </body>
 </html>
 
