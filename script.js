@@ -3,6 +3,9 @@ let history = [];
 
 let userInput = document.getElementById('city').value; 
 
+let dateToday = new Date(); 
+
+
 //functionality of code 
 let addCity = (ev) => {
   ev.preventDefault(); //prevents the form from submitting 
@@ -19,7 +22,7 @@ let addCity = (ev) => {
   localStorage.setItem('userSearchList', JSON.stringify(history) );
   }
 
-//Adding event listener and passing through the function addCity
+// //Adding event listener and passing through the function addCity
 document.addEventListener('DOMContentLoaded', ()=> {
     document.getElementById('btn1').addEventListener('click', addCity);
 });
@@ -28,13 +31,14 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 $('#btn1').on('click', function () {
         var userAPI = $("#city").val();      
-        searchWeatherTrips(userAPI); 
+        searchWeather(userAPI); 
         console.log(userAPI);
     });
 
 //Function to execute the API call 
-function searchWeatherTrips(userAPI) {
+function searchWeather(userAPI) {
   $('.API-container').empty(); 
+  $('.container-time').empty(); 
     var queryURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + userAPI + '&appid=ce3b9593e61b336933f1777b5554991c';
 
 
@@ -50,28 +54,26 @@ $.ajax ({
 
 //Create variables that are assigned to specific API data being called 
 
-    var h3 = $('<h3>').addClass('API-container').text(userInput);
-    console.log(h3);
+    var h2 = $('<h2>').addClass('API-container').text(userInput);
+    console.log(h2);
 
-    var temp = $('<p>').addClass('API-container').text("Temperature: " + response.main.temp); 
+    var temp = $('<p>').addClass('API-container').text("Temperature:" + response.main.temp + " F"); 
     console.log(temp);
 
-    var humidity = $('<p>').addClass('API-container').text("Humidity: " + response.main.humidity); 
+    var humidity = $('<p>').addClass('API-container').text("Humidity:" + response.main.humidity + "%"); 
     console.log(humidity);
 
-    var wind = $('<p>').addClass('API-container').text("Wind Speed: " + response.wind.speed); 
+    var wind = $('<p>').addClass('API-container').text("Wind Speed:" + response.wind.speed + " MPH"); 
     console.log(wind);  
 
-    var uvIndex = $('<p>').addClass('API-container').text("UV Index: "); 
-    console.log(uvIndex);  
 
 
 
 //Append everything
 
-    $('.API-container').append(h3, temp, humidity, wind, uvIndex);
+    $('.container-time').append(dateToday);
 
-    $('.API-container').slideDown('slow');
+    $('.API-container').append(h2, temp, humidity, wind);
 
     $("#city").text(JSON.stringify(response)); 
   }).catch(function(error){
